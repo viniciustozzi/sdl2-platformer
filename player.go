@@ -19,9 +19,11 @@ func newPlayer(renderer *sdl.Renderer) *element {
 
 	player.position = vector{
 		x: screenWidth / 2.0,
-		y: screenHeight - playerSize/2.0 - 60}
+		y: 0,
+	}
 
 	player.addComponent(newSpriteRenderer(player, renderer, "sprites/player.png", 4))
+	player.addComponent(newGravity(player))
 
 	return player
 }
