@@ -13,16 +13,19 @@ type vector struct {
 type component interface {
 	onUpdate() error
 	onDraw(renderer *sdl.Renderer) error
+	onCollision(other *element) error
 }
 
 type element struct {
-	position   vector
+	pos        vector
 	rotation   float64
 	active     bool
+	tag        string
+	collisions []circle
 	components []component
 }
 
-func newElement() *element {
+func newElement(tag string) *element {
 	e := &element{}
 	e.active = true
 	return e
@@ -54,7 +57,7 @@ func (elem *element) addComponent(new component) {
 	for _, existing := range elem.components {
 		if reflect.TypeOf(new) == reflect.TypeOf(existing) {
 			panic(fmt.Sprintf(
-				"attempt to add new component with existing type %v",
+			"attempt to add new component with existing type %v",
 				reflect.TypeOf(new)))
 		}
 	}
@@ -70,6 +73,17 @@ func (elem *element) getComponent(withType component) component {
 	}
 
 	panic(fmt.Sprintf("no component with type %v", reflect.TypeOf(withType)))
+}
+
+func (elem *element) collision(other *element) error {
+	for _, comp := range elem.components {
+		err := comp.onCollision(other)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 var elements []*element

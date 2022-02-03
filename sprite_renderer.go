@@ -32,8 +32,8 @@ func newSpriteRenderer(container *element, renderer *sdl.Renderer, filename stri
 
 func (sr *spriteRenderer) onDraw(renderer *sdl.Renderer) error {
 	// Converting coordinates to top left of sprite
-	x := sr.container.position.x - sr.width/2.0
-	y := sr.container.position.y - sr.height/2.0
+	x := sr.container.pos.x - sr.width/2.0
+	y := sr.container.pos.y - sr.height/2.0
 
 	renderer.CopyEx(
 		sr.tex,
@@ -47,6 +47,10 @@ func (sr *spriteRenderer) onDraw(renderer *sdl.Renderer) error {
 }
 
 func (sr *spriteRenderer) onUpdate() error {
+	return nil
+}
+
+func (sr *spriteRenderer) onCollision(other *element) error {
 	return nil
 }
 

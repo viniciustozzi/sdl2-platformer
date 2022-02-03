@@ -12,15 +12,19 @@ type gravity struct {
 func newGravity(container *element) *gravity {
 	return &gravity{
 		container: container,
-		g_factor:  1.0,
+		g_factor:  3.0,
 	}
+}
+
+func (g *gravity) onUpdate() error {
+	g.container.pos.y += g.g_factor * delta
+	return nil
 }
 
 func (g *gravity) onDraw(renderer *sdl.Renderer) error {
 	return nil
 }
 
-func (g *gravity) onUpdate() error {
-	g.container.position.y += g.g_factor
+func (g *gravity) onCollision(other *element) error {
 	return nil
 }

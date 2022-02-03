@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/veandco/go-sdl2/sdl"
 )
@@ -9,7 +10,11 @@ import (
 const (
 	screenWidth  = 800
 	screenHeight = 800
+
+	targetFPS = 60
 )
+
+var delta float64
 
 func main() {
 
@@ -39,6 +44,8 @@ func main() {
 	elements = append(elements, newPlayer(renderer))
 
 	for {
+		frameStartTime := time.Now()
+
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			switch event.(type) {
 			case *sdl.QuitEvent:
@@ -65,5 +72,8 @@ func main() {
 		}
 
 		renderer.Present()
+
+		delta = float64(time.Since(frameStartTime).Seconds() * targetFPS)
+
 	}
 }
