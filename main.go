@@ -74,6 +74,5 @@ func main() {
 		renderer.Present()
 
 		delta = float64(time.Since(frameStartTime).Seconds() * targetFPS)
-
 	}
 }

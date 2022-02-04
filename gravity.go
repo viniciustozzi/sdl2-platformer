@@ -24,7 +24,3 @@ func (g *gravity) onUpdate() error {
 func (g *gravity) onDraw(renderer *sdl.Renderer) error {
 	return nil
 }
-
-func (g *gravity) onCollision(other *element) error {
-	return nil
-}

@@ -39,7 +39,3 @@ func (m *playerMove) onUpdate() error {
 func (m *playerMove) onDraw(renderer *sdl.Renderer) error {
 	return nil
 }
-
-func (m *playerMove) onCollision(other *element) error {
-	return nil
-}

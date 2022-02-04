@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -21,8 +23,13 @@ func newPlayer(renderer *sdl.Renderer) *element {
 	}
 
 	player.addComponent(newSpriteRenderer(player, renderer, "sprites/player.png", 4))
+	player.addComponent(newCircleCollision(player, 50, onPlayerCollision))
 	player.addComponent(newGravity(player))
 	player.addComponent(newPlayerMove(player))
 
 	return player
+}
+
+func onPlayerCollision(elem *element) {
+	fmt.Println("collision")
 }
