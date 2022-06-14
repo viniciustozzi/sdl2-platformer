@@ -23,7 +23,7 @@ func newPlayer(renderer *sdl.Renderer) *element {
 	}
 
 	player.addComponent(newSpriteRenderer(player, renderer, "sprites/player.png", 4))
-	player.addComponent(newCircleCollision(player, 50, onPlayerCollision))
+	player.addComponent(newCircleCollision(player, 28, onPlayerCollision))
 	player.addComponent(newGravity(player))
 	player.addComponent(newPlayerMove(player))
 

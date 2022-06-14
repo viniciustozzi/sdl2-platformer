@@ -55,6 +55,7 @@ func main() {
 
 		renderer.SetDrawColor(0, 0, 0, 255)
 		renderer.Clear()
+		
 
 		for _, elem := range elements {
 			if elem.active {
